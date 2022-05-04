@@ -1,0 +1,77 @@
+<template>
+    <lightning-card title="Account with related details using wrapper class in LWC" 
+        icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <template if:true={accountsWithRelList}>
+                <template for:each={accountsWithRelList} for:item="acc">
+                    <div key={acc.accRecord.Id}>
+                        <lightning-badge class="badge" label={acc.accRecord.Name} icon-name="standard:account"></lightning-badge>
+                        <!-- <div class="slds-text-heading_medium">{acc.accRecord.Name}</div> -->
+                        <table>
+                            <tr>
+                              <th>Contacts</th>
+                              <th>Opportunities</th>
+                              <th>Cases</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <template if:true={acc.contactList}>
+                                        <ul class="slds-list_dotted">
+                                        <template for:each={acc.contactList} for:item="con">
+                                            <li key={con.Id}>{con.Name}</li>
+                                        </template>
+                                        </ul>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template if:true={acc.oppList}>
+                                        <ul class="slds-list_dotted">
+                                            <template for:each={acc.oppList} for:item="opp">
+                                                <li key={opp.Id}>{opp.Name}</li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template if:true={acc.casesList}>
+                                        <ul class="slds-list_dotted">
+                                            <template for:each={acc.casesList} for:item="cas">
+                                                <li key={cas.Id}>{cas.CaseNumber}</li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                </td>
+                            </tr>
+                          </table>
+                          <br/>
+                        <!--<template if:true={acc.contactList}>
+                            Contacts Count is {acc.contactCount}. Here is list:
+                            <ul class="slds-list_dotted">
+                                <template for:each={acc.contactList} for:item="con">
+                                    <li key={con.Id}>{con.Name}</li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template if:true={acc.oppList}>
+                            <ul class="slds-list_dotted">
+                                <template for:each={acc.oppList} for:item="opp">
+                                    <li key={opp.Id}>{opp.Name}</li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template if:true={acc.casesList}>
+                            <ul class="slds-list_dotted">
+                                <template for:each={acc.casesList} for:item="cas">
+                                    <li key={cas.Id}>{cas.CaseNumber}</li>
+                                </template>
+                            </ul>
+                        </template>-->
+                    </div>
+                </template>
+            </template>
+            <template if:true={error}>
+                {error}
+            </template>
+        </div>
+    </lightning-card>
+</template>
